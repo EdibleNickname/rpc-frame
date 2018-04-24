@@ -1,6 +1,7 @@
 package com.can.service.impl;
 
 import com.can.dao.UserInfoDao;
+import com.can.json.JsonUtil;
 import com.can.model.UserInfoDO;
 import com.can.service.UserInfoService;
 import org.slf4j.Logger;
@@ -27,8 +28,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public Boolean addUser(UserInfoDO userInfo) {
 
-        log.info("收到的信息是{},{}", userInfo.getUserName(), userInfo.getUserAge());
-
+        log.info("收到的参数------------->{}", JsonUtil.getInstance().writeJson(userInfo));
         int num = userInfoDao.insert(userInfo);
         if (num == 1) {
             return true;
@@ -40,10 +40,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfoDO getUser(Long id) {
 
         log.info("返回的参数为------>{}", id);
-
         UserInfoDO userInfoDO = userInfoDao.selectByPrimaryKey(id);
-        log.info("返回的用户名为------>{}", userInfoDO.getUserName());
-
         return userInfoDO;
     }
 }

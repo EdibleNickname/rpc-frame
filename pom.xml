@@ -41,6 +41,9 @@
         <druid.version>1.1.9</druid.version>
         <mysql.connector.version>5.1.46</mysql.connector.version>
 
+        <!--jackson-->
+        <jackson.version>2.9.5</jackson.version>
+
     </properties>
 
     <dependencyManagement>
@@ -223,6 +226,24 @@
                 <version>${mysql.connector.version}</version>
             </dependency>
             <!--数据库 end-->
+
+            <!-- jackson start -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- jackson end -->
 
             <!-- 工具包 start -->
             <!--lombok-->

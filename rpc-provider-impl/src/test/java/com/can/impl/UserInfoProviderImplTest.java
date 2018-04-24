@@ -1,5 +1,6 @@
 package com.can.impl;
 
+import com.can.json.JsonUtil;
 import com.can.provider.UserInfoProvider;
 import com.can.request.UserInfoRequest;
 import com.can.response.Response;
@@ -33,14 +34,14 @@ public class UserInfoProviderImplTest extends AbstractTestNGSpringContextTests {
         request.setUserAge(23);
         request.setUserName("LCX");
         Response<Boolean> response = userInfoProvider.addUser(request);
-        System.out.println(response.getResult());
+        log.info("返回结果为---------------->{}", JsonUtil.getInstance().writeJson(response));
     }
 
     @Test
     public void testGetUser() {
         Long id = 9L;
         Response<UserInfoDto> response = userInfoProvider.getUser(id);
-        System.out.println(response.getResult().getUserName());
+        log.info("返回结果为---------------->{}", JsonUtil.getInstance().writeJson(response));
     }
 
 }
