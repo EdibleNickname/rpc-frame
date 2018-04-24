@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 设置应用信息 -->
+    <dubbo:application name="rpc-frame" owner="LCN" organization="can"/>
+
+    <!--注册中心地址  -->
+    <dubbo:registry protocol="zookeeper" address="120.78.142.208:2181" client="curator"/>
+
+    <!--用dubbo协议在哪个端口暴露服务，用什么协议序列化-->
+    <dubbo:protocol name="dubbo" port="20985" serialization="kryo"/>
+
+    <!--提供的api-->
+    <dubbo:service interface="com.can.provider.DemoProvider" ref="demoProviderImpl"/>
+
+
+</beans>
