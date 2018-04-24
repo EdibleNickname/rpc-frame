@@ -25,10 +25,7 @@
         <!-- spring -->
         <spring.version>5.0.5.RELEASE</spring.version>
         <lombok.version>1.16.20</lombok.version>
-
-        <!--logback-->
         <logback.version>1.3.0-alpha4</logback.version>
-        <!--testng-->
         <testng.version>6.14.3</testng.version>
 
         <!-- dubbo 服务-->
@@ -37,6 +34,16 @@
         <curator.version>4.0.1</curator.version>
         <kryo.version>2.24.0</kryo.version>
         <kryo.serializers.version>0.42</kryo.serializers.version>
+
+        <!--database-->
+        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis.spring.version>1.3.2</mybatis.spring.version>
+        <druid.version>1.1.9</druid.version>
+        <mysql.connector.version>5.1.46</mysql.connector.version>
+
+        <!--jackson-->
+        <jackson.version>2.9.5</jackson.version>
+
     </properties>
 
     <dependencyManagement>
@@ -193,6 +200,51 @@
                 </exclusions>
             </dependency>
 
+            <!--数据库 start-->
+            <!-- mybatis -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!-- mybatis-spring -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+            <!--druid连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--mysql连接驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+            <!--数据库 end-->
+
+            <!-- jackson start -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- jackson end -->
+
             <!-- 工具包 start -->
             <!--lombok-->
             <dependency>
@@ -232,7 +284,27 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <filters>
+                    <filter>../dev.properties</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>
