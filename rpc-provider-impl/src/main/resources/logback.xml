@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="60 seconds">
+
+    <property name="rootLogLeave" value="DEBUG"  />
+
+    <shutdownHook class="ch.qos.logback.core.hook.DefaultShutdownHook" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-20d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80}[%L] -- %msg%n </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 去掉zookeeper的心跳日志 -->
+    <logger name="org.apache.zookeeper" level="INFO" additivity="true">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="${rootLogLeave}">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
