@@ -19,4 +19,7 @@
     <!--引入数据库相关配置-->
     <import resource="classpath*:spring/applicationContext-dao.xml"/>
 
+    <!--引入MQ相关的配置-->
+    <import resource="classpath:applicationContext-mq.xml" />
+
 </beans>

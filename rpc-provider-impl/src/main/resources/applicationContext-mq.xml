@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!--连接工厂-->
+    <rabbit:connection-factory id="connectionFactory" host="${mq.host}"
+                               username="${mq.username}" password="${mq.password}" port="${mq.port}"/>
+
+    <!--自动将queue,exchage提交到服务器-->
+    <rabbit:admin connection-factory="connectionFactory" />
+
+    <!--声明一个队列-->
+    <rabbit:queue name="myQueue" />
+
+    <!--主题型的交换机-->
+    <rabbit:topic-exchange name="myExchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="myQueue" pattern="first.*" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <!--监听器-->
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener ref="messageConsumer" queue-names="myQueue" />
+    </rabbit:listener-container>
+
+    <!--发送模板-->
+    <rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+        exchange="myExchange" routing-key="foo.bar"/>
+
+
+</beans>

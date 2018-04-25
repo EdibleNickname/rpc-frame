@@ -48,6 +48,11 @@
         </dependency>
         <!--dubbo end -->
 
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
+
         <!--测试-->
         <dependency>
             <groupId>org.testng</groupId>
