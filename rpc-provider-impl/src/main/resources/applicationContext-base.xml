@@ -7,7 +7,20 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 开启注解-->
+    <!-- 
+    	向spring隐式的注入了 
+    	AutowiredAnnotationBeanPostProcessor(可以使用@Autowired) 
+    	RequiredAnnotationBeanPostProcessor(可以使用@Required)
+    	CommonAnnotationBeanPostProcessor
+    	PersistenceAnnotationBeanPostProcessor
+    -->
     <context:annotation-config />
+    
+    <!-- 
+		某个bean没有注入到spring的ioc容器里面
+		但是需要向里面注入一些属性，可以直接在属性上写上注解
+		然后在配置文件里面添加这个就行了
+     -->
     <context:spring-configured/>
 
     <!-- 扫描注解的范围 -->

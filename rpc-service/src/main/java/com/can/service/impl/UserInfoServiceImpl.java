@@ -39,7 +39,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfoDO getUser(Long id) {
 
-        log.info("返回的参数为------>{}", id);
+        log.info("收到的参数为------>{}", id);
         UserInfoDO userInfoDO = userInfoDao.selectByPrimaryKey(id);
         return userInfoDO;
     }

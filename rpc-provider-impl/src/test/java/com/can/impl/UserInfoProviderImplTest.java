@@ -39,7 +39,7 @@ public class UserInfoProviderImplTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testGetUser() {
-        Long id = 9L;
+        Long id = 1L;
         Response<UserInfoDto> response = userInfoProvider.getUser(id);
         log.info("返回结果为---------------->{}", JsonUtil.getInstance().writeJson(response));
     }
