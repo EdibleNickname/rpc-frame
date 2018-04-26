@@ -31,3 +31,5 @@ SET FOREIGN_KEY_CHECKS = 1;
 >1. 对MQ的支持
 >2. Redis
 >3. hibernate-validator 进行参数验证
+>4. docker
+>5. netty
