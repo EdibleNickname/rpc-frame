@@ -20,7 +20,7 @@ public class ApplicationStarter {
     public static void main(String[] args) {
         try {
 
-            log.info("服务开启中.....");
+            log.info("服务开启中.......");
 
             ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
                     new String[]{"applicationContext-base.xml"});
